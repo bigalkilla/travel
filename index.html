@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Itineraries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: #f5f0e8;
+      color: #3a2e25;
+      padding: 50px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #6d5b4d;
+      margin-bottom: 50px;
+    }
+
+    .trip-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .trip-card {
+      display: block;
+      text-decoration: none;
+      background: #fffaf4;
+      border: 1px solid #d9cdbf;
+      padding: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: inherit;
+    }
+
+    .trip-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .trip-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+    }
+
+    .trip-meta {
+      font-size: 0.95rem;
+      color: #8b7766;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .trip-desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #4b3f36;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #9b8a7d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Travel Itineraries</h1>
+    <p class="intro">A small collection of beautifully overplanned trips.</p>
+
+    <div class="trip-grid">
+
+      <a class="trip-card" href="freudian-trip-vienna.html">
+        <div class="trip-title">Freudian Trip</div>
+        <div class="trip-meta">Vienna • October</div>
+        <div class="trip-desc">
+          A cultured, psychoanalytically tinged long weekend of cafés, Freud, museums and excellent schnitzel.
+        </div>
+      </a>
+
+      <a class="trip-card" href="The_Covens_Alpine_Adventure.html">
+        <div class="trip-title">The Coven’s Alpine Adventure</div>
+        <div class="trip-meta">Chamonix • September</div>
+        <div class="trip-desc">
+          Spa, mountain air, beautiful dinners and just enough hiking to feel superior.
+        </div>
+      </a>
