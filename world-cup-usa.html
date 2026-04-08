@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stars, Stripes & The Beautiful Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Bitter', serif; background: #0D1B2A; color: #e0ddd6; line-height: 1.7; font-weight: 300; }
+
+/* HERO */
+.hero {
+  background: #0D1B2A;
+  color: #e8e4dd;
+  text-align: center;
+  padding: 0 20px 50px;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #C6A376 0%, #D4B88C 50%, #C6A376 100%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(198,163,118,0.12);
+  pointer-events: none;
+}
+
+.hero-flag { font-size: 5em; margin-bottom: 24px; line-height: 1; }
+
+.hero h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.hero h1 span { color: #C6A376; }
+
+.hero .subtitle {
+  font-family: 'Bitter', serif;
+  font-style: italic;
+  font-size: 1.1em;
+  color: #C6A376;
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+.hero-details { font-size: 0.92em; color: #7b8a9e; margin-bottom: 6px; }
+.hero-tags {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.82em;
+  color: #C6A376;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 16px 0 24px;
+  font-weight: 400;
+}
+.hero-tags span { color: #4a5a72; }
+
+.hero-quote {
+  font-family: 'Bitter', serif;
+  font-style: italic;
+  font-size: 0.95em;
+  color: rgba(198,163,118,0.6);
+  max-width: 480px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+.scroll-hint { position: absolute; bottom: 2rem; font-size: 0.85em; color: #4a5a72; animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+/* NAV */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #0D1B2A;
+  padding: 12px 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(198,163,118,0.15);
+}
+.sticky-nav a {
+  font-family: 'Oswald', sans-serif;
+  color: #C6A376;
+  text-decoration: none;
+  margin: 0 14px;
+  font-size: 0.78em;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.sticky-nav a:hover { color: #fff; }
+
+/* CONTAINER */
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+/* PHASE BANNERS */
+.phase-banner {
+  background: linear-gradient(135deg, #0D1B2A 0%, #162840 100%);
+  text-align: center;
+  padding: 50px 20px;
+  margin: 0;
+  position: relative;
+  border-top: 3px solid #C6A376;
+}
+.phase-banner h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.4em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.phase-banner .phase-sub {
+  font-family: 'Bitter', serif;
+  color: #C6A376;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 300;
+}
+.phase-banner .phase-dates {
+  font-family: 'Oswald', sans-serif;
+  color: #4a5a72;
+  font-size: 0.78em;
+  margin-top: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* SECTIONS */
+.section {
+  background: #F5F2EB;
+  border: 1px solid rgba(198,163,118,0.15);
+  border-radius: 4px;
+  padding: 32px 28px;
+  margin: 16px 0;
+}
+.section h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5em;
+  color: #0D1B2A;
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.day-label {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.5em;
+  font-weight: 500;
+  color: #C6A376;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+.section h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1em;
+  color: #1B2A4A;
+  margin: 22px 0 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.section h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: #8a8178;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 28px 0 10px;
+}
+.section p { margin-bottom: 12px; color: #4a4540; }
+.section a { color: #9a7d54; }
+
+/* TIMELINE */
+.timeline { margin: 15px 0; }
+.timeline-item {
+  display: flex; gap: 15px; padding: 10px 0;
+  border-left: 2px solid #d8d2c6;
+  margin-left: 8px; padding-left: 20px;
+  position: relative;
+}
+.timeline-item::before {
+  content: ''; position: absolute; left: -6px; top: 14px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #C6A376; border: 2px solid #F5F2EB;
+}
+.timeline-time { font-family: 'Oswald', sans-serif; font-weight: 500; color: #C6A376; min-width: 60px; flex-shrink: 0; font-size: 0.88em; letter-spacing: 0.5px; }
+.timeline-desc { flex: 1; color: #4a4540; }
+.timeline-desc strong { color: #1B2A4A; }
+
+/* GAME DAY */
+.game-day {
+  border: 1px solid rgba(198,163,118,0.25);
+  background: linear-gradient(135deg, #12233D 0%, #1a2f50 100%) !important;
+  position: relative;
+}
+.game-day h2 { color: #fff !important; }
+.game-day .day-label { color: #C6A376 !important; }
+.game-day .timeline-item { border-left-color: rgba(198,163,118,0.2) !important; }
+.game-day .timeline-item::before { border-color: #1a2f50 !important; }
+.game-day .timeline-time { color: #C6A376 !important; }
+.game-day .timeline-desc { color: #b0aaa0 !important; }
+.game-day .timeline-desc strong { color: #e0ddd6 !important; }
+.game-day::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 4px;
+  background: #C6A376;
+  border-radius: 4px 0 0 4px;
+}
+.game-badge {
+  display: inline-block;
+  background: #C6A376;
+  color: #0D1B2A;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+/* INFO BOX */
+.info-box {
+  background: #ede9e0;
+  border-left: 3px solid #C6A376;
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 0 4px 4px 0;
+}
+.info-box p { margin-bottom: 6px; color: #4a4540; }
+.info-box strong { color: #1B2A4A; }
+
+/* TRAVEL BOX */
+.travel-box {
+  background: #091424;
+  border: 1px solid rgba(198,163,118,0.1);
+  padding: 18px 22px;
+  margin: 18px 0;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+.travel-box strong { color: #C6A376; }
+.travel-box { color: #7b8a9e; }
+.travel-box p { margin-bottom: 6px; color: #7b8a9e; }
+
+/* TABLES */
+.match-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88em; }
+.match-table th {
+  text-align: left; padding: 10px 12px;
+  background: #091424;
+  color: #C6A376;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 0.8em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(198,163,118,0.2);
+}
+.match-table td { padding: 10px 12px; border-bottom: 1px solid #d8d2c6; color: #4a4540; }
+.match-table td strong { color: #1B2A4A; }
+.match-table tr:last-child td { border-bottom: none; }
+
+/* MUTED */
+.muted { color: #4a5a72; }
+.small { font-size: 0.85em; }
+
+/* CHECKLIST */
+.checklist { margin: 10px 0; }
+.checklist-item { padding: 6px 0 6px 22px; position: relative; color: #4a4540; }
+.checklist-item::before { content: '\2713'; position: absolute; left: 0; color: #C6A376; font-weight: 700; }
+.checklist-item strong { color: #1B2A4A; }
+
+
+/* MAP */
+.map-embed { margin: 18px 0; border-radius: 6px; overflow: hidden; border: 1px solid #d8d2c6; }
+.map-embed iframe { width: 100%; height: 280px; border: none; }
+
+/* LOCATION PHOTO */
+.location-photo { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; margin: 15px 0; border: 1px solid #d8d2c6; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 60px 20px; color: #4a5a72; border-top: 1px solid rgba(198,163,118,0.1); }
+.footer .quote {
+  font-family: 'Bitter', serif;
+  font-style: italic;
+  font-size: 1.05em;
+  color: #7b8a9e;
+  max-width: 520px;
+  margin: 0 auto 10px;
+  font-weight: 300;
+}
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.4rem; }
+  .section { padding: 24px 18px; margin: 12px 0; }
+  .sticky-nav a { margin: 0 6px; font-size: 0.7em; letter-spacing: 1px; }
+  .phase-banner h2 { font-size: 1.8em; }
+  .phase-banner { padding: 36px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-flag">&#127482;&#127480;</div>
+  <h1>Stars, Stripes <span>&</span><br>The Beautiful Game</h1>
+  <div class="subtitle">A world cup trip across America</div>
+  <div class="hero-details">Sun 14 June &ndash; Tue 30 June 2026</div>
+  <div class="hero-details">Alice &amp; James &middot; 16 nights &middot; 3 states</div>
+  <div class="hero-tags">Texas <span>/</span> Nantucket <span>/</span> Boston <span>/</span> Brooklyn</div>
+  <div class="hero-quote">&ldquo;Football is coming home... via Dallas, Boston &amp; New Jersey&rdquo;</div>
+  <div class="scroll-hint">&darr; scroll &darr;</div>
+</div>
+
+<!-- NAV -->
+<div class="sticky-nav">
+  <a href="#essentials">Essentials</a>
+  <a href="#texas">Texas</a>
+  <a href="#nantucket">Nantucket</a>
+  <a href="#boston">Boston</a>
+  <a href="#nyc">NYC</a>
+  <a href="#practical">Tips</a>
+</div>
+
+<div class="container">
+
+<!-- ESSENTIALS -->
+<div class="section" id="essentials">
+  <h2>The Essentials</h2>
+
+  <h3>Flights</h3>
+  <p><strong>Out:</strong> BA0193 &middot; Sun 14 Jun &middot; 12:55 &middot; London Heathrow T5 &rarr; Dallas Fort Worth &middot; arrives 17:05 local</p>
+  <p><strong>Back:</strong> BA0116 &middot; Mon 30 Jun &middot; 20:05 &middot; JFK T8 &rarr; London Heathrow T5 &middot; arrives 08:15 (1 Jul)</p>
+  <p class="muted small">British Airways &middot; World Traveller &middot; Confirmed</p>
+
+  <h3>The Matches</h3>
+  <table class="match-table">
+    <tr><th>Match</th><th>Date</th><th>Venue</th><th>KO</th></tr>
+    <tr><td><strong>England vs Croatia</strong></td><td>Wed 17 Jun</td><td>Dallas, TX</td><td>15:00</td></tr>
+    <tr><td><strong>England vs Ghana</strong></td><td>Tue 23 Jun</td><td>Boston, MA</td><td>16:00</td></tr>
+    <tr><td><strong>Panama vs England</strong></td><td>Sat 27 Jun</td><td>East Rutherford, NJ</td><td>17:00</td></tr>
+  </table>
+
+  <h3>Car Rental</h3>
+  <div class="info-box">
+    <p><strong>Pick up:</strong> Fri 26 Jun, 10:00am &mdash; Boston Westin Copley, 10 Huntington Ave, Boston MA</p>
+    <p><strong>Drop off:</strong> Fri 26 Jun, 5:00pm &mdash; Brooklyn Northside Piers, 1 Northside Piers, Brooklyn NY</p>
+    <p class="muted small">One-way rental &middot; Boston to Brooklyn &middot; ~4 hours drive</p>
+  </div>
+
+  <h3>Hotels</h3>
+  <div class="checklist">
+    <div class="checklist-item"><strong>Fort Worth:</strong> Courtyard by Marriott Fort Worth Historic Stockyards &middot; 3 nights (14&ndash;17 Jun)</div>
+    <div class="checklist-item"><strong>Boston:</strong> Citizen M, Back Bay &middot; 1 night (18 Jun)</div>
+    <div class="checklist-item"><strong>Nantucket:</strong> The Brant, Brant Point &middot; 3 nights (19&ndash;22 Jun)</div>
+    <div class="checklist-item"><strong>Boston:</strong> Copley Square Hotel, Back Bay &middot; 4 nights (22&ndash;26 Jun)</div>
+    <div class="checklist-item"><strong>Brooklyn:</strong> Henry Norman Hotel, Greenpoint &middot; 4 nights (26&ndash;30 Jun)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PHASE 1: TEXAS -->
+<!-- ═══════════════════════════════════════ -->
+</div>
+<div class="phase-banner" id="texas">
+  <h2>&#129312; Texas</h2>
+  <div class="phase-sub">Cowboys, cattle &amp; cold beer</div>
+  <div class="phase-dates">Sun 14 &ndash; Thurs 18 June &middot; Fort Worth</div>
+</div>
+<div class="container">
+
+<!-- DAY 1 -->
+<div class="section">
+  <h2><span class="day-label">Day 1 &mdash; Sunday 14 June</span>Arrival in Fort Worth</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">12:55</div><div class="timeline-desc">Fly BA0193, London Heathrow &rarr; Dallas Fort Worth. Arrive 17:05 local time.</div></div>
+    <div class="timeline-item"><div class="timeline-time">~18:00</div><div class="timeline-desc">Uber/taxi to <strong>Courtyard by Marriott Fort Worth Historic Stockyards</strong>. Check in, freshen up.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">Wander the <strong>Fort Worth Stockyards</strong>. Get the lay of the land, soak up the cowboy atmosphere, find dinner and a cold beer.</div></div>
+  </div>
+  <div class="info-box">
+    <p><strong>&#128205; Base:</strong> Courtyard by Marriott Fort Worth Historic Stockyards &mdash; right in the heart of the action.</p>
+  </div>
+  <img class="location-photo" src="https://images.unsplash.com/photo-1531218150417-6c29e28e293c?auto=format&fit=crop&w=900&q=80" alt="Fort Worth Stockyards" loading="lazy" />
+  <div class="map-embed">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3354.8!2d-97.3472!3d32.7873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e71e4a4b0e0e1%3A0x2a1f8e3f0c0f9b1a!2sFort+Worth+Stockyards!5e0!3m2!1sen!2sus" loading="lazy" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="section">
+  <h2><span class="day-label">Day 2 &mdash; Monday 15 June</span>Cowboys &amp; Cattle</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">11:30</div><div class="timeline-desc"><strong>Cattle drive</strong> through the Stockyards &mdash; longhorns paraded down Exchange Avenue, twice daily. Arrive early for a good spot.</div></div>
+    <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-desc">Brunch/lunch at <strong>Brewed</strong> &mdash; good coffee, food, Stockyards vibes.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Afternoon</div><div class="timeline-desc">Explore the Stockyards properly &mdash; browse the western shops, visit the livestock pens, maybe catch a rodeo practice.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">Dinner at <strong>H3 Steakhouse</strong> or drinks at <strong>White Elephant Saloon</strong> &mdash; the legendary honky-tonk.</div></div>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="section">
+  <h2><span class="day-label">Day 3 &mdash; Tuesday 16 June</span>Rodeo Night</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Daytime</div><div class="timeline-desc">Option to head into <strong>Dallas</strong> for the day &mdash; explore downtown, Dealey Plaza, Deep Ellum neighbourhood. Or a relaxed day around Fort Worth.</div></div>
+    <div class="timeline-item"><div class="timeline-time">19:30</div><div class="timeline-desc"><strong>Stockyards Championship Rodeo</strong> &mdash; the real deal. Tickets booked. &#127942;</div></div>
+  </div>
+  <div class="info-box">
+    <p><strong>&#127942; Rodeo tickets:</strong> Booked for 19:30. The Cowtown Coliseum in the Stockyards.</p>
+  </div>
+</div>
+
+<!-- DAY 4 - GAME DAY -->
+<div class="section game-day">
+  <h2><span class="day-label">Day 4 &mdash; Wednesday 17 June</span>&#9917; England vs Croatia</h2>
+  <div class="game-badge">&#9917; Match Day &middot; Dallas &middot; 15:00</div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">13:00</div><div class="timeline-desc">Pre-match build up. Find the England fans, soak it in.</div></div>
+    <div class="timeline-item"><div class="timeline-time">~14:30</div><div class="timeline-desc">Uber to stadium (~26 mins from hotel). No car needed.</div></div>
+    <div class="timeline-item"><div class="timeline-time">15:00</div><div class="timeline-desc"><strong>England vs Croatia</strong> &#127988;&#917607;&#917602;&#917605;&#917614;&#917607;&#917631; &mdash; COME ON ENGLAND.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Post-match</div><div class="timeline-desc">Uber back. Celebrations (or commiserations) &mdash; <strong>Billy Bob&rsquo;s</strong> afterwards? The world&rsquo;s largest honky-tonk.</div></div>
+  </div>
+</div>
+
+<!-- DAY 5 -->
+<div class="section">
+  <h2><span class="day-label">Day 5 &mdash; Thursday 18 June</span>Fly to Boston</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Morning</div><div class="timeline-desc">Travel day. Uber/taxi to Dallas airport, fly to <strong>Boston</strong>. &#9992;&#65039;</div></div>
+    <div class="timeline-item"><div class="timeline-time">Afternoon</div><div class="timeline-desc">Arrive Boston. Uber/taxi to <strong>Citizen M, Back Bay</strong>. Drop bags, explore the neighbourhood.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">First evening in Boston. Dinner in Back Bay or the South End.</div></div>
+  </div>
+  <div class="travel-box">
+    <p><strong>&#9992;&#65039; Fort Worth &rarr; Boston</strong></p>
+    <p>Internal flight &mdash; details TBC</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PHASE 2: NANTUCKET -->
+<!-- ═══════════════════════════════════════ -->
+</div>
+<div class="phase-banner" id="nantucket">
+  <h2>&#9875; Nantucket</h2>
+  <div class="phase-sub">Island life, bikes &amp; the Atlantic</div>
+  <div class="phase-dates">Fri 19 &ndash; Mon 22 June &middot; Nantucket Island</div>
+</div>
+<div class="container">
+
+<!-- DAY 6 -->
+<div class="section">
+  <h2><span class="day-label">Day 6 &mdash; Friday 19 June</span>To the Island</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Morning</div><div class="timeline-desc">Pick up car rental, drive from Boston to <strong>Hyannis</strong> (~3hr 15). &#128663;</div></div>
+    <div class="timeline-item"><div class="timeline-time">Midday</div><div class="timeline-desc"><strong>Ferry to Nantucket</strong> from Hyannis. Book the midday sailing. &#9973;&#65039;</div></div>
+    <div class="timeline-item"><div class="timeline-time">Afternoon</div><div class="timeline-desc">Arrive Nantucket. Walk to <strong>The Brant, Brant Point</strong>. Settle in.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">Dinner at <strong>Cru</strong> &mdash; harbourside seafood, one of the island&rsquo;s best. &#127860;</div></div>
+  </div>
+  <div class="info-box">
+    <p><strong>&#9973;&#65039; Ferry:</strong> Book midday ferry Hyannis &rarr; Nantucket in advance. ~1 hour crossing.</p>
+    <p><strong>&#127860; Cru:</strong> Book for dinner.</p>
+  </div>
+  <img class="location-photo" src="https://images.unsplash.com/photo-1605723517503-3cadb5818a0c?auto=format&fit=crop&w=900&q=80" alt="Nantucket harbour" loading="lazy" />
+  <div class="map-embed">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23900!2d-70.1003!3d41.2835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e4e96d4df7c7ed%3A0x91c498f2683c482!2sNantucket%2C+MA!5e0!3m2!1sen!2sus" loading="lazy" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- DAY 7 -->
+<div class="section">
+  <h2><span class="day-label">Day 7 &mdash; Saturday 20 June</span>Island Day</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">All day</div><div class="timeline-desc"><strong>Bike around the island</strong> &mdash; rent bikes and explore. Cobblestone streets, lighthouses, beaches, cedar-shingled cottages. Peak New England.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">Dinner at <strong>Nautilus</strong>? Book ahead.</div></div>
+  </div>
+</div>
+
+<!-- DAY 8 -->
+<div class="section">
+  <h2><span class="day-label">Day 8 &mdash; Sunday 21 June</span>Siaconset &amp; Sunset</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Morning</div><div class="timeline-desc">Walk or bike to <strong>Siaconset</strong> (&lsquo;Sconset) &mdash; rose-covered cottages, dramatic bluffs.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Afternoon</div><div class="timeline-desc"><strong>Sankaty Lighthouse</strong> &mdash; red-and-white striped beacon on the bluff.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">Dinner at <strong>Millie&rsquo;s</strong> and sunset at <strong>Madaket Beach</strong>. &#127749;</div></div>
+  </div>
+</div>
+
+<!-- DAY 9 -->
+<div class="section">
+  <h2><span class="day-label">Day 9 &mdash; Monday 22 June</span>Back to Boston</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Morning</div><div class="timeline-desc">Last morning on the island. Coffee, stroll around Brant Point.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Midday</div><div class="timeline-desc">Ferry back to Hyannis. Drive to Boston (~3hr 15). &#128663;</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">Check into <strong>Copley Square Hotel, Back Bay</strong>.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PHASE 3: BOSTON -->
+<!-- ═══════════════════════════════════════ -->
+</div>
+<div class="phase-banner" id="boston">
+  <h2>&#127944; Boston</h2>
+  <div class="phase-sub">Game day, Salem &amp; the city</div>
+  <div class="phase-dates">Tue 23 &ndash; Fri 26 June &middot; Back Bay, Boston</div>
+</div>
+<div class="container">
+
+
+<div class="section">
+  <h2>Back Bay, Boston</h2>
+  <img class="location-photo" src="https://images.unsplash.com/photo-1572128023489-c4372a0cb5ce?auto=format&fit=crop&w=900&q=80" alt="Boston skyline" loading="lazy" />
+  <div class="info-box">
+    <p><strong>&#128205; Base:</strong> Copley Square Hotel, Back Bay &mdash; classic Boston neighbourhood, great restaurants and bars walking distance.</p>
+  </div>
+  <div class="map-embed">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11792!2d-71.0789!3d42.3493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37a0c7e8a7e8d%3A0x7a3b44c10a41f20!2sCopley+Square!5e0!3m2!1sen!2sus" loading="lazy" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- DAY 10 - GAME DAY -->
+<div class="section game-day">
+  <h2><span class="day-label">Day 10 &mdash; Tuesday 23 June</span>&#9917; England vs Ghana</h2>
+  <div class="game-badge">&#9917; Match Day &middot; Boston &middot; 16:00</div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Daytime</div><div class="timeline-desc">Game day! Pre-match in Boston.</div></div>
+    <div class="timeline-item"><div class="timeline-time">~14:30</div><div class="timeline-desc">Uber to stadium (~40 mins). Go early &mdash; trains reportedly bad around the stadium. &#128663;</div></div>
+    <div class="timeline-item"><div class="timeline-time">16:00</div><div class="timeline-desc"><strong>England vs Ghana</strong> &#127988;&#917607;&#917602;&#917605;&#917614;&#917607;&#917631; &mdash; COME ON ENGLAND.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Post-match</div><div class="timeline-desc">Uber back to Boston. Celebrate.</div></div>
+  </div>
+</div>
+
+<!-- DAY 11 -->
+<div class="section">
+  <h2><span class="day-label">Day 11 &mdash; Wednesday 24 June</span>Salem Day Trip</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">All day</div><div class="timeline-desc"><strong>Salem</strong> &mdash; drive or train (~40 mins). Witch trials, Peabody Essex Museum, atmospheric streets. &#129497;</div></div>
+  </div>
+</div>
+
+<!-- DAY 12 -->
+<div class="section">
+  <h2><span class="day-label">Day 12 &mdash; Thursday 25 June</span>Boston Day</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">All day</div><div class="timeline-desc">Exploring <strong>Boston</strong> on foot. Freedom Trail, Beacon Hill, the waterfront, North End for Italian. Details TBC.</div></div>
+  </div>
+</div>
+
+<!-- DAY 13 -->
+<div class="section">
+  <h2><span class="day-label">Day 13 &mdash; Friday 26 June</span>Drive to Brooklyn</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">10:00</div><div class="timeline-desc">Pick up rental car at <strong>Boston Westin Copley</strong>.</div></div>
+    <div class="timeline-item"><div class="timeline-time">10:30</div><div class="timeline-desc">Drive Boston &rarr; Brooklyn (~4 hours). &#128663;</div></div>
+    <div class="timeline-item"><div class="timeline-time">~15:00</div><div class="timeline-desc">Arrive Brooklyn. Drop off car at <strong>Brooklyn Northside Piers</strong> by 17:00.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-desc">Check into <strong>Henry Norman Hotel, Greenpoint</strong>.</div></div>
+  </div>
+  <div class="travel-box">
+    <p><strong>&#128663; Car rental:</strong> Pick up 10am Boston Westin Copley &rarr; Drop off 5pm Brooklyn Northside Piers</p>
+    <p>One-way rental &middot; ~4 hours drive</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PHASE 4: NYC -->
+<!-- ═══════════════════════════════════════ -->
+</div>
+<div class="phase-banner" id="nyc">
+  <h2>&#127751; New York</h2>
+  <div class="phase-sub">Brooklyn, the final match &amp; the city that never sleeps</div>
+  <div class="phase-dates">Sat 27 &ndash; Tue 30 June &middot; Greenpoint, Brooklyn</div>
+</div>
+<div class="container">
+
+
+<div class="section">
+  <h2>Greenpoint, Brooklyn</h2>
+  <img class="location-photo" src="https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=900&q=80" alt="Brooklyn Bridge and NYC skyline" loading="lazy" />
+  <div class="info-box">
+    <p><strong>&#128205; Base:</strong> Henry Norman Hotel, Greenpoint &mdash; boutique hotel in one of Brooklyn&rsquo;s coolest neighbourhoods. Manhattan a short subway ride away.</p>
+  </div>
+  <div class="map-embed">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12088!2d-73.9545!3d40.7274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2593fdd6b805f%3A0x4b3b8d3f1f6d3b1a!2sGreenpoint%2C+Brooklyn%2C+NY!5e0!3m2!1sen!2sus" loading="lazy" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- DAY 14 - GAME DAY -->
+<div class="section game-day">
+  <h2><span class="day-label">Day 14 &mdash; Saturday 27 June</span>&#9917; Panama vs England</h2>
+  <div class="game-badge">&#9917; Match Day &middot; MetLife Stadium, NJ &middot; 17:00</div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Daytime</div><div class="timeline-desc">Pre-match in Brooklyn. Brunch, build-up, nerves.</div></div>
+    <div class="timeline-item"><div class="timeline-time">~15:00</div><div class="timeline-desc">Uber/taxi to <strong>MetLife Stadium</strong>, East Rutherford (~1 hour). Go early.</div></div>
+    <div class="timeline-item"><div class="timeline-time">17:00</div><div class="timeline-desc"><strong>Panama vs England</strong> &#127988;&#917607;&#917602;&#917605;&#917614;&#917607;&#917631; &mdash; the final group game. COME ON ENGLAND.</div></div>
+    <div class="timeline-item"><div class="timeline-time">Post-match</div><div class="timeline-desc">Back to Brooklyn. This could be a very big night. &#127879;</div></div>
+  </div>
+</div>
+
+<!-- DAY 15 -->
+<div class="section">
+  <h2><span class="day-label">Day 15 &mdash; Sunday 28 June</span>Brooklyn / NYC</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">All day</div><div class="timeline-desc"><strong>Brooklyn &amp; NYC</strong> &mdash; no car, no rush. Explore Greenpoint, Williamsburg, or head into Manhattan. Details TBC.</div></div>
+  </div>
+</div>
+
+<!-- DAY 16 -->
+<div class="section">
+  <h2><span class="day-label">Day 16 &mdash; Monday 29 June</span>Brooklyn / NYC</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">All day</div><div class="timeline-desc"><strong>Brooklyn &amp; NYC</strong> &mdash; last full day. Make it count. Details TBC.</div></div>
+  </div>
+</div>
+
+<!-- DAY 17 -->
+<div class="section">
+  <h2><span class="day-label">Day 17 &mdash; Tuesday 30 June</span>Fly Home</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">Daytime</div><div class="timeline-desc">Last morning in Brooklyn. Pack up, final coffee.</div></div>
+    <div class="timeline-item"><div class="timeline-time">~17:00</div><div class="timeline-desc">Head to <strong>JFK Airport</strong>. Taxi/Uber.</div></div>
+    <div class="timeline-item"><div class="timeline-time">20:05</div><div class="timeline-desc">Fly BA0116, JFK &rarr; London Heathrow. Arrive 08:15 (1 July). &#9992;&#65039; &hearts;</div></div>
+  </div>
+</div>
+
+<!-- PRACTICAL -->
+<div class="section" id="practical">
+  <h2>Practical Notes</h2>
+
+  <h4>Things to Book</h4>
+  <div class="checklist">
+    <div class="checklist-item"><strong>Rodeo tickets</strong> &mdash; Tue 16 Jun, 19:30 &#10004;</div>
+    <div class="checklist-item"><strong>Cru, Nantucket</strong> &mdash; Fri 19 Jun dinner</div>
+    <div class="checklist-item"><strong>Nautilus, Nantucket</strong> &mdash; Sat 20 Jun dinner</div>
+    <div class="checklist-item"><strong>Nantucket ferry</strong> &mdash; Hyannis midday, Fri 19 Jun &amp; return Mon 22 Jun</div>
+    <div class="checklist-item"><strong>Internal flight</strong> &mdash; Fort Worth/Dallas &rarr; Boston, Thu 18 Jun</div>
+  </div>
+
+  <h4>Transport Summary</h4>
+  <p><strong>Fort Worth:</strong> No car. Uber/taxi to games and airport.</p>
+  <p><strong>Nantucket leg:</strong> Car rental Boston &rarr; Hyannis &rarr; ferry. Bikes on the island.</p>
+  <p><strong>Boston:</strong> Walking + Uber for game day.</p>
+  <p><strong>Boston &rarr; Brooklyn:</strong> One-way car rental, Fri 26 Jun.</p>
+  <p><strong>Brooklyn/NYC:</strong> No car. Subway, walking, Uber for MetLife.</p>
+
+  <h4>Weather</h4>
+  <p><strong>Texas (mid-June):</strong> Hot. 32&ndash;38&deg;C. Sun cream, hat, water.</p>
+  <p><strong>Nantucket/Boston (late June):</strong> Warm. 22&ndash;28&deg;C. Layers for evening sea breeze.</p>
+  <p><strong>NYC (late June):</strong> Hot &amp; humid. 28&ndash;32&deg;C. Light clothes, comfortable shoes.</p>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="quote">&ldquo;Some people believe football is a matter of life and death. I can assure you it is much, much more important than that.&rdquo;</div>
+  <p class="muted small">&mdash; Bill Shankly</p>
+</div>
+
+</body>
+</html>
